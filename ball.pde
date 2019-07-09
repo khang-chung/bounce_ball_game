@@ -19,6 +19,9 @@ int rballColor = 255;
 int gballColor = 255;
 int bballColor = 255;
 
+PFont f;
+
+int hscore = 0;
 
 class Ball {
   
@@ -62,6 +65,9 @@ class Ball {
         bxspeed = 0;
         byspeed = 0;
         
+        if(points > hscore) {
+          hscore = points;
+        }
         points = 0;
     }
   
@@ -103,8 +109,17 @@ class Ball {
   }
   
   void score(){
+    f = createFont("Arial",36,true); //create the font class
+
+      textFont(f, 24);
      stroke(255);
      text(points, 400, 400);
+     text("High Score: " + hscore, 600, 50);
+     
+     textFont(f, 18);
+     stroke(255);
+     text("+1 everytime ball hits paddle", 30, 50);
+     text("Every 5 = extra point and speed up", 30, 70);
   }
 
 }

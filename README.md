@@ -10,31 +10,31 @@ Converted into Javascript using <a href = "http://processingjs.org/">ProcessingJ
 3. Create a folder and drag this Javascript file into the folder.
 4. Create a new text document in the folder. Open it in a text editor(e.g. Notepad) and paste the following code into it:
  
- window.onload = function()
-{
-  var canvas = document.getElementsByTagName("canvas");
-  for ( var i = 0; i < canvas.length; i++ )
-  {
-    Processing( canvas[i], canvas[i].previousSibling.textContent );
-  }
-};
+     window.onload = function()
+    {
+      var canvas = document.getElementsByTagName("canvas");
+      for ( var i = 0; i < canvas.length; i++ )
+      {
+        Processing( canvas[i], canvas[i].previousSibling.textContent );
+      }
+    };
 
 
 5. Name it "init.js" and save it as "All files".
 6. Create another text document and paste the following code into it:
 
-<html>
-  <head>
-    <title>A Processing.js Example</title>
-    <script type="text/javascript" src="processing.js"></script>
-    <script type="text/javascript" src="init.js"></script>
-  </head>
-  <body>
-    <h1>A Processing.js Example</h1>
-    <script type="application/processing">
-    </script><canvas></canvas>
-  </body>
-</html>
+    <html>
+      <head>
+        <title>A Processing.js Example</title>
+        <script type="text/javascript" src="processing.js"></script>
+        <script type="text/javascript" src="init.js"></script>
+      </head>
+      <body>
+        <h1>A Processing.js Example</h1>
+        <script type="application/processing">
+        </script><canvas></canvas>
+      </body>
+    </html>
 
 7. Save it as "test.html" in "All files". Do not save it as a text document or it will be considered "test.html.txt".
 8. Withint the <script> </script> tags, paste your Processing code bewteen them.

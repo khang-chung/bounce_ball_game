@@ -40,7 +40,7 @@ Converted into Javascript using <a href = "http://processingjs.org/">ProcessingJ
 ```
 
 7. Save it as "test.html" in "All files". Do not save it as a text document or it will be considered "test.html.txt".
-8. Withint the <script> </script> tags, paste your Processing code bewteen them.
+8. Within the <script> </script> tags, paste your Processing code bewteen them.
 9. Run your html file and it should open up in a browser.
 10. If you want to upload it to github, use ?<a href = "https://desktop.github.com/">Github Desktop</a>, search for your project's repository, and save these three files into your program repository. Push it to github.
 11. Go to your repository settings on <a href ="github.com">Github</a> and customize your Github page by scrolling down to Github pages.

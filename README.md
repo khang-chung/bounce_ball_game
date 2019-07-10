@@ -10,7 +10,7 @@ Converted into Javascript using <a href = "http://processingjs.org/">ProcessingJ
 3. Create a folder and drag this Javascript file into the folder.
 4. Create a new text document in the folder. Open it in a text editor(e.g. Notepad) and paste the following code into it:
  
- '''
+```
      window.onload = function()
     {
       var canvas = document.getElementsByTagName("canvas");
@@ -19,12 +19,12 @@ Converted into Javascript using <a href = "http://processingjs.org/">ProcessingJ
         Processing( canvas[i], canvas[i].previousSibling.textContent );
       }
     };
-'''
+```
 
 5. Name it "init.js" and save it as "All files".
 6. Create another text document and paste the following code into it:
 
-'''
+```
     <html>
       <head>
         <title>A Processing.js Example</title>
@@ -37,7 +37,7 @@ Converted into Javascript using <a href = "http://processingjs.org/">ProcessingJ
         </script><canvas></canvas>
       </body>
     </html>
-'''
+```
 
 7. Save it as "test.html" in "All files". Do not save it as a text document or it will be considered "test.html.txt".
 8. Withint the <script> </script> tags, paste your Processing code bewteen them.

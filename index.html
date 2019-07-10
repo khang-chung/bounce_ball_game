@@ -1,0 +1,254 @@
+<html>
+  <head>
+    <title>Bounce Ball Game</title>
+    <script type="text/javascript" src="processing.js"></script>
+    <script type="text/javascript" src="init.js"></script>
+  </head>
+  <body>
+    <h1>A Processing.js Example</h1>
+    <script type="application/processing">
+
+
+
+Ball ball;
+Boundaries boundaries;
+Paddle paddle;
+
+
+void setup(){
+  size(800, 800);
+  paddle = new Paddle();
+  boundaries = new Boundaries();
+  ball = new Ball();
+  time = millis();
+}
+
+void draw(){
+  background(0);
+
+    if(key == 'o'){
+      paddle.mouseMode();
+    }
+    if(key == 'p') {
+      paddle.wasd();
+    }
+  paddle.display();
+
+  paddle.wasd();
+
+  ball.display();
+
+  boundaries.display();
+
+  ball.speedup();
+
+  ball.hotkeys();
+
+  ball.movement();
+
+  ball.score();
+
+
+}
+
+float ballX = 400;
+float ballY = 200;
+
+float bxspeed = 0;
+float byspeed = 0;
+
+float bxdir = 1;
+float bydir = 1;
+
+
+float radx = 20;
+float rady = 20;
+
+int points = 0;
+
+int time = millis();
+int duration = 10000;
+int rballColor = 255;
+int gballColor = 255;
+int bballColor = 255;
+
+PFont f;
+
+int hscore = 0;
+
+class Ball {
+
+
+
+  void display() {
+    stroke(rballColor, gballColor, bballColor);
+    ellipse(ballX, ballY, radx, rady);
+
+  }
+
+  void speedup() {
+    if (points > 4 && points % 5 == 0) {
+
+          text("+1", 400, 390);
+
+
+      points  += 1;
+
+
+      bxspeed +=3;
+      byspeed +=3;
+
+
+    }
+
+
+  }
+
+
+
+  void hotkeys() {
+    if(key == ENTER) {
+      bxspeed = 5;
+      byspeed = 5;
+    }
+      if(key == 'r' || ballY > height) {
+        ballX = 400;
+        ballY = 200;
+
+        bxspeed = 0;
+        byspeed = 0;
+
+        if(points > hscore) {
+          hscore = points;
+        }
+        points = 0;
+    }
+
+  }
+
+  void movement() {
+
+
+
+
+      ballX = ballX + bxspeed * bxdir;
+      ballY = ballY + byspeed * bydir;
+
+      if((ballX > px - 32 && ballX < px +32) && (ballY > width-40-rady && ballY < width)) {
+
+      rballColor = int(random(0,255));
+      gballColor = int(random(0,255));
+      bballColor = int(random(0,255));
+
+      bxdir *= -1;
+      bydir *= -1;
+
+      points += 1;
+    }
+
+    if(ballX < 50 || ballX > width-50) {
+      bxdir *= -1;
+      rballColor = int(random(0,255));
+      gballColor = int(random(0,255));
+      bballColor = int(random(0,255));
+    }
+
+    if(ballY < 10) {
+      bydir *= -1;
+    }
+
+
+
+  }
+
+  void score(){
+    f = createFont("Arial",36,true); //create the font class
+
+      textFont(f, 24);
+     stroke(255);
+     text(points, 400, 400);
+     text("High Score: " + hscore, 600, 50);
+
+     textFont(f, 18);
+     stroke(255);
+     text("+1 everytime ball hits paddle", 30, 50);
+     text("Every 5 = extra point and speed up", 30, 70);
+  }
+
+}
+
+int rColor1 = 255;
+int gColor1 = 255;
+int bColor1 = 255;
+
+int rColor2 = 255;
+int gColor2 = 255;
+int bColor2 = 255;
+
+
+class Boundaries {
+
+  void display() {
+    stroke(rColor1, gColor1 ,bColor1);
+    strokeWeight(3);
+    line(20, 20, 20, height-20);
+
+    stroke(rColor2, gColor2 ,bColor2);
+    strokeWeight(3);
+    line(width-20, 20, width-20, height-20);
+
+
+    if(ballX < 50) {
+       rColor1 = int(random(0,255));
+       gColor1 = int(random(0,255));
+       bColor1 = int(random(0,255));
+    }
+
+    if(ballX > width-50) {
+       rColor2 = int(random(0,255));
+       gColor2 = int(random(0,255));
+       bColor2 = int(random(0,255));
+    }
+
+
+  }
+
+
+}
+
+float px = 400;
+float xdir = 0;
+
+
+
+class Paddle {
+  void display() {
+    rectMode(CENTER);
+    rect(px, height-30, 60, 30);
+
+  }
+
+  void wasd() {
+    if(keyPressed) {
+      if(key == 'd' && px < width - 60) {
+        xdir = 5;
+        px += xdir;
+      }
+      if(key == 'a' && px > 60) {
+        xdir = -5;
+        px += xdir;
+      }
+
+    }
+  }
+
+  void mouseMode() {
+    px = mouseX;
+  }
+
+}
+
+
+    </script><canvas></canvas>
+  </body>
+</html>

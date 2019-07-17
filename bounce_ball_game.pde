@@ -6,7 +6,7 @@ Paddle paddle;
 
 
 void setup(){
-  size(800, 800);
+  size(600, 600);
   paddle = new Paddle();
   boundaries = new Boundaries();
   ball = new Ball();
@@ -16,10 +16,10 @@ void setup(){
 void draw(){
   background(0);
   
-    if(key == 'o'){
+    if(key == 'o' || key == 'O'){
       paddle.mouseMode();
     }
-    if(key == 'p') {
+    if(key == 'p' || key == 'P') {
       paddle.wasd();
     }
   paddle.display();

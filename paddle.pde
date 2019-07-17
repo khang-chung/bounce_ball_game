@@ -1,4 +1,4 @@
-float px = 400;
+float px = 300;
 float xdir = 0;
 
 
@@ -12,11 +12,11 @@ class Paddle {
   
   void wasd() {
     if(keyPressed) {
-      if(key == 'd' && px < width - 60) {
+      if((key == 'd' || key == 'D') && px < width - 60) {
         xdir = 5;
         px += xdir;
       }
-      if(key == 'a' && px > 60) {
+      if((key == 'a' || key == 'A' ) && px > 60) {
         xdir = -5;
         px += xdir;
       }

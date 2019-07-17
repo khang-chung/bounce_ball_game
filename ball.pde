@@ -1,5 +1,5 @@
-float ballX = 400;
-float ballY = 200;
+float ballX = 300;
+float ballY = 150;
 
 float bxspeed = 0;
 float byspeed = 0;
@@ -36,7 +36,7 @@ class Ball {
   void speedup() {
     if (points > 4 && points % 5 == 0) {
        
-          text("+1", 400, 390);
+          text("+1", 300, 290);
         
       
       points  += 1;
@@ -59,8 +59,8 @@ class Ball {
       byspeed = 5;
     }
       if(key == 'r' || ballY > height) {
-        ballX = 400;
-        ballY = 200;
+        ballX = 300;
+        ballY = 150;
         
         bxspeed = 0;
         byspeed = 0;
@@ -111,16 +111,17 @@ class Ball {
   void score(){
     f = createFont("Arial",36,true); //create the font class
 
-      textFont(f, 24);
+     textFont(f, 16);
      stroke(255);
-     text(points, 400, 400);
-     text("High Score: " + hscore, 600, 50);
+     text(points, 300, 300);
+     text("High Score: " + hscore, 460, 50);
      
-     textFont(f, 18);
+     textFont(f, 12);
      stroke(255);
-     text("+1 everytime ball hits paddle", 30, 50);
-     text("Every 5 = extra point and speed up", 30, 70);
+     text("+1 everytime ball hits paddle", 30, 30);
+     text("Every 5 = extra point and speed up", 30, 50);
+     text("Press ENTER to start, and R to reset", 30, 70);
+     text("Press 'o' for mouse mode or 'p' to return to keyboard", 30, 90);
   }
 
 }
-  

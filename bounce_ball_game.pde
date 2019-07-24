@@ -15,13 +15,14 @@ void setup(){
 
 void draw(){
   background(0);
-  
-    if(key == 'o' || key == 'O'){
+ 
+    
       paddle.mouseMode();
-    }
-    if(key == 'p' || key == 'P') {
-      paddle.wasd();
-    }
+      
+      paddle.mouseMove();
+      
+    paddle.keyMove();
+    
   paddle.display();
   
   paddle.wasd();

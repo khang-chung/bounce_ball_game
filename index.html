@@ -1,12 +1,20 @@
 <html>
   <head>
     <title>Bounce Ball Game</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="styles.css">
+
     <script type="text/javascript" src="processing.js"></script>
     <script type="text/javascript" src="init.js"></script>
   </head>
   <body>
     <h1>Bounce Ball Game</h1>
+    <section id="content">
+      
     <script type="application/processing">
+
+
+
 
 
 
@@ -28,12 +36,13 @@
     void draw(){
       background(0);
 
-        if(key == 'o'){
+
           paddle.mouseMode();
-        }
-        if(key == 'p') {
-          paddle.wasd();
-        }
+
+          paddle.mouseMove();
+
+        paddle.keyMove();
+
       paddle.display();
 
       paddle.wasd();
@@ -53,8 +62,10 @@
 
     }
 
+    //break
+
     float ballX = 300;
-    float ballY = 100;
+    float ballY = 150;
 
     float bxspeed = 0;
     float byspeed = 0;
@@ -109,13 +120,15 @@
 
 
       void hotkeys() {
-        if(key == ENTER) {
+        if(key == ENTER && controlMode == false) {
           bxspeed = 5;
           byspeed = 5;
         }
+
+
           if(key == 'r' || ballY > height) {
             ballX = 300;
-            ballY = 100;
+            ballY = 150;
 
             bxspeed = 0;
             byspeed = 0;
@@ -171,14 +184,32 @@
          text(points, 300, 300);
          text("High Score: " + hscore, 460, 50);
 
-         textFont(f, 14);
+         textFont(f, 12);
          stroke(255);
          text("+1 everytime ball hits paddle", 30, 30);
          text("Every 5 = extra point and speed up", 30, 50);
+         pushStyle();
+         fill(0,255,0);
          text("Press ENTER to start, and R to reset", 30, 70);
+         popStyle();
+         pushStyle();
+         fill(255, 0, 0);
+         text("Press 'o' for mouse mode", 30, 90);
+         popStyle();
+         pushStyle();
+         fill(0, 0, 255);
+         text("Press 'p' for keyboard mode", 30, 110);
+         popStyle();
+         pushStyle();
+         fill(0, 150, 200);
+         text("'a' or 'left arrow' to move LEFT", 30, 130);
+         text("'d' or 'right arrow' to move RIGHT", 30, 150);
+         popStyle();
       }
 
     }
+
+    //break
 
     int rColor1 = 255;
     int gColor1 = 255;
@@ -219,39 +250,123 @@
 
     }
 
+    //break
+
     float px = 300;
     float xdir = 0;
-
+    boolean controlMode = false;
+    int r;
+    int g;
+    int b;
 
 
     class Paddle {
       void display() {
         rectMode(CENTER);
+        pushStyle();
+        fill(r, g , b);
         rect(px, height-30, 60, 30);
-
+        popStyle();
       }
 
       void wasd() {
         if(keyPressed) {
           if((key == 'd' || key == 'D') && px < width - 60) {
+            controlMode = false;
+             r = 0;
+             b = 255;
             xdir = 5;
             px += xdir;
           }
           if((key == 'a' || key == 'A' ) && px > 60) {
+            controlMode = false;
+             r = 0;
+             b = 255;
             xdir = -5;
             px += xdir;
           }
+
+          if(key == CODED) {
+            if(keyCode == RIGHT  && px < width-60) {
+              controlMode = false;
+               r = 0;
+               b = 255;
+              xdir = 5;
+              px += xdir;
+            }
+          }
+          if(key == CODED) {
+            if(keyCode == LEFT  && px > 60) {
+              controlMode = false;
+               r = 0;
+               b = 255;
+              xdir = -5;
+              px += xdir;
+            }
+          }
+
 
         }
       }
 
       void mouseMode() {
-        px = mouseX;
+        if(key == 'o' || key == 'O'){
+          controlMode = true;
+          b = 0;
+          r = 255;
+          px = mouseX;
+      }
+      }
+
+      void keyMove() {
+      if(key == 'p' || key == 'P') {
+          controlMode = false;
+          r = 0;
+          b = 255;
+          paddle.wasd();
+        }
+      }
+      void mouseMove() {
+        if(key == ENTER && controlMode == true) {
+
+          px = mouseX;
+
+          if(points <=4) {
+            bxspeed = 5;
+            byspeed = 5;
+          }
+
+
+
+
+
+        }
+
+
+        if(ballY > height || key == 'r'){
+              controlMode = false;
+              ballX = 300;
+              ballY = 150;
+              bxspeed = 0;
+              byspeed = 0;
+              controlMode = true;
+              if(points > hscore) {
+              hscore = points;
+            }
+              points = 0;
+            }
+
       }
 
     }
 
 
+
+
+
     </script><canvas></canvas>
+
+  </section>
+
   </body>
 </html>

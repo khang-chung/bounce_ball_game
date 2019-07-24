@@ -54,10 +54,12 @@ class Ball {
   
   
   void hotkeys() {
-    if(key == ENTER) {
+    if(key == ENTER && controlMode == false) {
       bxspeed = 5;
       byspeed = 5;
     }
+      
+      
       if(key == 'r' || ballY > height) {
         ballX = 300;
         ballY = 150;
@@ -120,8 +122,23 @@ class Ball {
      stroke(255);
      text("+1 everytime ball hits paddle", 30, 30);
      text("Every 5 = extra point and speed up", 30, 50);
+     pushStyle();
+     fill(0,255,0);
      text("Press ENTER to start, and R to reset", 30, 70);
-     text("Press 'o' for mouse mode or 'p' to return to keyboard", 30, 90);
+     popStyle();
+     pushStyle();
+     fill(255, 0, 0);
+     text("Press 'o' for mouse mode", 30, 90);
+     popStyle();
+     pushStyle();
+     fill(0, 0, 255);
+     text("Press 'p' for keyboard mode", 30, 110);
+     popStyle();
+     pushStyle();
+     fill(0, 150, 200);
+     text("'a' or 'left arrow' to move LEFT", 30, 130);
+     text("'d' or 'right arrow' to move RIGHT", 30, 150);
+     popStyle();
   }
 
 }
